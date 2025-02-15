@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ModernMusicPlayer</class>
+ <widget class="QWidget" name="ModernMusicPlayer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>896</width>
+    <height>589</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+    /* 基础样式 */
+    QWidget {
+        background: #f5f7fa;
+        font-family: 'Segoe UI';
+        color: #2c3e50;
+    }
+    
+    /* 侧边栏 */
+    #sidebar {
+        background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+            stop:0 #2c3e50, stop:1 #3498db);
+        border-radius: 15px;
+        padding: 20px 0;
+    }
+    
+    QPushButton#navButton {
+        background: transparent;
+        color: white;
+        font-size: 14px;
+        padding: 15px 25px;
+        text-align: left;
+        border-radius: 8px;
+        margin: 5px 10px;
+        transition: all 0.3s ease;
+    }
+    
+    QPushButton#navButton:hover {
+        background: rgba(255,255,255,0.15);
+    }
+    
+    QPushButton#navButton:checked {
+        background: rgba(255,255,255,0.25);
+        font-weight: 600;
+    }
+    
+    /* 主内容区 */
+    #stackedWidget {
+        background: #ffffff;
+        border-radius: 15px;
+        margin: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* 列表样式 */
+    QListWidget {
+        background: transparent;
+        border: 2px solid #e0e6ed;
+        border-radius: 8px;
+        padding: 5px;
+    }
+    
+    QListWidget::item {
+        padding: 12px;
+        border-bottom: 1px solid #e0e6ed;
+    }
+    
+    QListWidget::item:hover {
+        background: #f8f9fa;
+    }
+    
+    /* 控制栏 */
+    #controlBar {
+        background: #ffffff;
+        border-radius: 15px;
+        padding: 15px;
+        margin: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    QPushButton#controlButton {
+        background: #3498db;
+        color: white;
+        border-radius: 8px;
+        padding: 10px 18px;
+        font-size: 14px;
+        min-width: 80px;
+        transition: all 0.2s ease;
+    }
+    
+    QPushButton#controlButton:hover {
+        background: #2980b9;
+        transform: scale(1.05);
+    }
+    
+    /* 进度条 */
+    QSlider::groove:horizontal {
+        height: 6px;
+        background: #e0e6ed;
+        border-radius: 3px;
+    }
+    
+    QSlider::handle:horizontal {
+        width: 16px;
+        margin: -5px 0;
+        background: #3498db;
+        border-radius: 8px;
+    }
+    
+    /* 标签样式 */
+    QLabel#lblTitle {
+        font-size: 16px;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+   </string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,2">
+     <item>
+      <widget class="QWidget" name="sidebar" native="true">
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="side">
+          <item>
+           <widget class="QPushButton" name="btnHome">
+            <property name="text">
+             <string>🏠 发现音乐</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnFavorites">
+            <property name="text">
+             <string>❤️ 我的收藏</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnLocal">
+            <property name="text">
+             <string>📁 本地音乐</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnImport">
+            <property name="text">
+             <string>⬆️ 导入音乐</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLineEdit" name="searchBar">
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="placeholderText">
+            <string>🔍 搜索歌曲或歌手...</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="searchButton">
+           <property name="text">
+            <string>搜索</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QStackedWidget" name="stackedWidget">
+         <property name="currentIndex">
+          <number>2</number>
+         </property>
+         <widget class="QWidget" name="pageHome">
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QListWidget" name="songList"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="pageFavorites">
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QLabel" name="lblFavorites">
+             <property name="text">
+              <string>❤️ 我的收藏歌曲</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListWidget" name="favoritesList"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="pageLocal">
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QLabel" name="lblLocal">
+             <property name="text">
+              <string>📁 本地音乐库</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListWidget" name="localList"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="lblTitle">
+       <property name="text">
+        <string>lblTitle</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QWidget" name="controlBar" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="btnPrevious">
+        <property name="text">
+         <string>⏮</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnPlay">
+        <property name="text">
+         <string>▶️ 播放</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnNext">
+        <property name="text">
+         <string>⏭</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSlider" name="progressSlider">
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="timeLabel">
+        <property name="text">
+         <string>00:00 / 00:00</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnLike">
+        <property name="text">
+         <string>🤍 收藏</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
